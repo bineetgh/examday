@@ -3,7 +3,6 @@ from django.views.generic import ListView
 from django.views.generic import TemplateView
 from exam.models import Question
 from django.http import HttpResponse
-from .forms import TestSetForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 
 
