@@ -1,0 +1,62 @@
+{% extends '_base.html' %}
+{% block css %}
+{{ block.super }}
+<style>
+    @import url('https://fonts.googleapis.com/css?family=ABeeZee:400,700&display=swap');
+    
+    .font-family-abz {
+        font-family: ABeeZee;
+    }
+</style>
+{% endblock %}
+
+{% load static %}
+
+{% block title %}Exam page{% endblock title %}
+
+{% block content %}
+<main class="h-full overflow-y-auto">
+    <div class="container px-6 mx-auto grid">
+      <h2
+        class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+      >
+        Test Paper I
+      </h2>
+
+<h1 class="uppercase text-gray-700 bg-primary font-bolder px-5 py-2">Test Paper 1</h1>
+<h3 class="font-bold text-green-700">Your Score : {{score}} of {{total}}</h3>
+
+<form action="/exam/" method="post">
+    {% csrf_token %}
+    <div class="p-4 m-4 w-full shadow-xl rounded-lg overflow-hidden font-family-abz">
+    {% for q in questions %}
+    <div class="my-2 w-full bg-white">
+        <h3 class="rounded-lg text-lg-center font-bold py-1 px-3">{{q.id}}. {{q.title}}</h3>
+        <div class="my-1">
+            <input type="radio" id="{{q.option1}}" name="{{q.id}}" value="1">
+            <label for="{{q.option1}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">A</label>
+            <span class="px-1">{{q.option1}}</span>
+        </div>
+        <div class="my-1">
+        <input type="radio" id="{{q.option2}}" name="{{q.id}}" value="2">
+        <label for="{{q.option2}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">B</label>
+        <span class="px-1">{{q.option2}}</span>
+    </div>
+    <div class="my-1">
+        <input type="radio" id="{{q.option3}}" name="{{q.id}}" value="3">
+        <label for="{{q.option3}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">C</label>
+        <span class="px-1">{{q.option3}}</span>
+    </div>
+    <div class="my-1">
+        <input type="radio" id="{{q.option4}}" name="{{q.id}}" value="4">
+        <label for="{{q.option4}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">D</label>
+        <span class="px-1">{{q.option4}}</span>    
+    </div>
+    {% endfor %}   
+    <br /> 
+    <input type="submit" value="Submit" class="cursor-pointer rounded-md bg-orange-600 text-white font-bold p-1">
+    </div>
+</form>
+</div>
+</main>
+{% endblock content %}
