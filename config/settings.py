@@ -35,8 +35,6 @@ INSTALLED_APPS = [
     'pages',
     'exam',
 
-    'django_sass_compiler',
-
 ]
 
 # MIDDLEWARE
