@@ -1,1 +1,1 @@
-web: gunicorn examday.wsgi
+web: gunicorn
