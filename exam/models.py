@@ -15,6 +15,9 @@ class TestSeries(models.Model):
         ('NEET', 'NEET')])
     year = models.IntegerField()
 
+    def __str__(self):
+        return self.title
+
 class TestSet(models.Model):
     name = models.CharField(max_length=100)
     series = models.ForeignKey(TestSeries, on_delete=models.SET_NULL, null=True)
@@ -25,6 +28,9 @@ class TestSet(models.Model):
         (4, 'Level 4'),
         (5, 'Level 5')
     ])
+
+    def __str__(self):
+        return self.name
     
 
 
@@ -52,3 +58,6 @@ class Question(models.Model):
         (4, 'Level 4'),
         (5, 'Level 5')
     ])
+
+    def __str__(self):
+        return self.title

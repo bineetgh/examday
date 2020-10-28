@@ -18,39 +18,39 @@
 <main class="h-full overflow-y-auto">
     <div class="container xl:px-4 px-2 mx-auto grid">
       <h2
-        class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+        class="mx-2 my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
       >
         Test Paper I
       </h2>
 
-<h1 class="uppercase text-gray-700 bg-primary font-bolder px-5 py-2">Test Paper 1</h1>
-<h3 class="font-bold text-green-700">Your Score : {{score}} of {{total}}</h3>
+<h3 class="font-bold text-green-700 px-2 mx-2">Your Score : {{score}} of {{total}}</h3>
 
 <form action="/exam/" method="post">
     {% csrf_token %}
-    <div class="p-4 m-4 w-full shadow-xl rounded-lg overflow-hidden font-family-abz">
+    <div class="p-2 m-2 w-full shadow-xl rounded-lg overflow-hidden font-family-abz">
     {% for q in questions %}
     <div class="my-2 w-full bg-white">
-        <h3 class="rounded-lg text-lg-center font-bold py-1 px-3">{{q.id}}. {{q.title}}</h3>
+        <h3 class="text-xl font-bold p-1">QId{{q.id}}. {{q.title}}</h3>
         <div class="my-1">
-            <input type="radio" id="{{q.option1}}" name="{{q.id}}" value="1">
+            <input type="radio" id="{{q.option1}}" name="{{q.id}}" value="1" {% if answer|get_item:q.id == 1 %} checked {% endif %}>
             <label for="{{q.option1}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">A</label>
-            <span class="px-1">{{q.option1}}</span>
+            <span class={% if solution|get_item:q.id == '1' %} 'bg-green-500 p-1 rounded-lg' {% else %} 'px-1' {% endif %}>{{q.option1}}</span>
         </div>
         <div class="my-1">
-        <input type="radio" id="{{q.option2}}" name="{{q.id}}" value="2">
-        <label for="{{q.option2}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">B</label>
-        <span class="px-1">{{q.option2}}</span>
-    </div>
-    <div class="my-1">
-        <input type="radio" id="{{q.option3}}" name="{{q.id}}" value="3">
-        <label for="{{q.option3}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">C</label>
-        <span class="px-1">{{q.option3}}</span>
-    </div>
-    <div class="my-1">
-        <input type="radio" id="{{q.option4}}" name="{{q.id}}" value="4">
-        <label for="{{q.option4}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">D</label>
-        <span class="px-1">{{q.option4}}</span>    
+            <input type="radio" id="{{q.option2}}" name="{{q.id}}" value="2" {% if answer|get_item:q.id == 2 %} checked {% endif %}>
+            <label for="{{q.option2}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">B</label>
+            <span class={% if solution|get_item:q.id == '2' %} 'bg-green-500 p-1 rounded-lg' {% else %} 'px-1' {% endif %}>{{q.option2}}</span>
+        </div>
+        <div class="my-1">
+            <input type="radio" id="{{q.option3}}" name="{{q.id}}" value="3" {% if answer|get_item:q.id == 3 %} checked {% endif %}>
+            <label for="{{q.option3}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">C</label>
+            <span class={% if solution|get_item:q.id == '3' %} 'bg-green-500 p-1 rounded-lg' {% else %} 'px-1' {% endif %}>{{q.option3}}</span>
+        </div>
+        <div class="my-1">
+            <input type="radio" id="{{q.option4}}" name="{{q.id}}" value="4" {% if answer|get_item:q.id == 4 %} checked {% endif %}>
+            <label for="{{q.option4}}" class="rounded-md bg-gray-600 px-2 text-white font-bold">D</label>
+            <span class={% if solution|get_item:q.id == '4' %} 'bg-green-500 p-1 rounded-lg' {% else %} 'px-1' {% endif %}>{{q.option4}}</span>    
+        </div>
     </div>
     {% endfor %}   
     <br /> 
